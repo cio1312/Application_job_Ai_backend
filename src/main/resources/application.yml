@@ -1,0 +1,33 @@
+spring:
+  datasource:
+    url: jdbc:h2:file:./data/testdb;DB_CLOSE_DELAY=-1;MODE=MYSQL # Store data in a file (persistent across server restarts)
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  h2:
+    console:
+      enabled: true  # Enable H2 Console to access the database via web UI
+      path: /h2-console  # Path for accessing H2 Console
+  jpa:
+    hibernate:
+      ddl-auto: update  # Automatically update the schema if needed
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+  security:
+    user:
+      name: user
+      password: password
+
+  # Logging configuration
+  logging:
+    level:
+      root: INFO  # General log level for all application logs
+      org.springframework.web: DEBUG  # Detailed logs for Spring MVC and HTTP requests
+      org.springframework.security: DEBUG  # Debugging security-related logs
+      org.hibernate.SQL: DEBUG  # Log SQL queries executed by Hibernate
+      org.hibernate.type.descriptor.sql.BasicBinder: TRACE  # Log parameter binding values in SQL
+      org.springframework.jdbc.core: DEBUG  # Log JDBC interactions
+
+server:
+  port: 8080  # Running the Spring Boot application on port 8080
